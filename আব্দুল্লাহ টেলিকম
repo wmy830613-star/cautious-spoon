@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আব্দুল্লাহ টেলিকম - Abdullah Telecom</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .product-card {
+            transition: all 0.25s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-40 bg-white shadow-md">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-900
+                text-white text-xs py-1.5 px-4 text-center
+                flex justify-between items-center max-w-7xl mx-auto">
+
+        <span class="flex items-center gap-1.5 font-medium">
+            <i class="fa-solid fa-truck-fast text-amber-400"></i>
+            সারা বাংলাদেশে ক্যাশ অন ডেলিভারি
+        </span>
+
+        <a href="https://wa.me/8801861564433"
+           target="_blank"
+           class="hover:underline flex items-center gap-1.5 font-bold text-green-300">
+
+            <i class="fa-brands fa-whatsapp text-sm text-green-400"></i>
+            হোয়াটসঅ্যাপ: ০১৮৬১৫৬৪৪৩৩
+        </a>
+    </div>
+
+
+    <!-- Main Branding Header -->
+    <div class="max-w-7xl mx-auto px-4 py-3
+                flex items-center justify-between gap-4">
+
+        <a href="#" class="flex items-center gap-2.5">
+
+            <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-lg
+                        flex items-center justify-center">
+
+                <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+            </div>
+
+            <div class="flex flex-col">
+
+                <span class="leading-none text-xl sm:text-2xl font-black
+                             text-indigo-950 tracking-tight">
+
+                    আব্দুল্লাহ
+                    <span class="text-amber-500">টেলিকম</span>
+
+                </span>
+
+                <span class="text-[10px] tracking-widest text-indigo-600
+                             font-bold uppercase -mt-0.5">
+
+                    Abdullah Telecom
+
+                </span>
+            </div>
+
+        </a>
+
+
+        <!-- Desktop Search -->
+        <div class="hidden md:flex flex-1 max-w-lg relative">
+
+            <input
+                type="text"
+                id="searchInput"
+                onkeyup="filterProducts()"
+                placeholder="পণ্য খুঁজুন (কভার, চার্জার, নেকব্যান্ড, টেম্পার্ড গ্লাস)..."
+                class="w-full pl-4 pr-11 py-2.5 border-2 border-indigo-100
+                       rounded-full focus:outline-none focus:border-indigo-600
+                       text-sm bg-gray-50 focus:bg-white transition">
+
+            <button class="absolute right-3 top-3 text-gray-400
+                           hover:text-indigo-600">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+        </div>
+
+
+        <!-- Order Form Button -->
+        <div>
+
+            <a href="#orderFormSection"
+               class="inline-flex items-center gap-2 bg-amber-500
+                      hover:bg-amber-600 text-slate-900 font-bold px-4 py-2
+                      rounded-full shadow-md text-xs sm:text-sm transition">
+
+                <i class="fa-solid fa-file-pen text-indigo-900"></i>
+
+                <span>অর্ডার ফর্ম</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Mobile Search -->
+    <div class="px-4 pb-3 md:hidden">
+
+        <div class="relative w-full">
+
+            <input
+                type="text"
+                id="mobileSearchInput"
+                onkeyup="filterProductsMobile()"
+                placeholder="পণ্য খুঁজুন (যেমন: কভার, চার্জার)..."
+                class="w-full pl-4 pr-10 py-2 border border-gray-300
+                       rounded-full focus:outline-none focus:border-indigo-600
+                       text-sm bg-gray-50">
+
+            <button class="absolute right-3 top-2.5 text-gray-400">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Category Navigation -->
+    <nav class="bg-indigo-950 text-white shadow-inner">
+
+        <div class="max-w-7xl mx-auto px-4 flex items-center gap-2
+                    overflow-x-auto scrollbar-hide py-2.5
+                    text-xs sm:text-sm font-medium">
+
+            <button
+                onclick="selectCategory('all', this)"
+                class="cat-btn active-cat px-4 py-1.5 rounded-full
+                       whitespace-nowrap bg-amber-500 text-slate-900
+                       font-bold shadow">
+
+                সবকটি পণ্য
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('মোবাইলের কভার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                মোবাইলের কভার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('চার্জার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                চার্জার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('ডাটা ক্যাবল', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                ডাটা ক্যাবল
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('হেডফোন', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                হেডফোন
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('আইফোন কভার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                আইফোন কভার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('নেকব্যান্ড', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                নেকব্যান্ড
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('এক্সেল চার্জার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                এক্সেল ব্রান্ডের চার্জার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('ব্লুটুথ', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                ব্লুটুথ
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('অ্যাপল প্রোডাক্টস', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                অ্যাপল প্রোডাক্টস
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('ব্যাটারি', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                ব্যাটারি
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('টেম্পার্ড গ্লাস', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                টেম্পার্ড গ্লাস
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('স্টিকার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                স্টিকার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('পলি পেপার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                পলি পেপার
+
+            </button>
+
+
+            <button
+                onclick="selectCategory('স্পিকার', this)"
+                class="cat-btn px-4 py-1.5 rounded-full whitespace-nowrap
+                       hover:bg-indigo-800 transition">
+
+                স্পিকার
+
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+<section
+    class="bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-900
+           text-white py-8 px-4 relative overflow-hidden">
+
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row
+                items-center justify-between gap-8 relative z-10">
+
+        <div class="space-y-4 text-center md:text-left">
+
+            <span
+                class="bg-amber-500 text-indigo-950 font-extrabold text-xs
+                       px-3.5 py-1 rounded-full uppercase tracking-wider
+                       inline-flex items-center gap-1.5 shadow">
+
+                <i class="fa-solid fa-check-circle"></i>
+
+                আব্দুল্লাহ টেলিকম - আপনার বিশ্বস্ত মোবাইল শপ
+
+            </span>
+
+
+            <h1
+                class="text-3xl sm:text-4xl md:text-5xl font-black
+                       leading-tight tracking-tight">
+
+                সকল অরিজিনাল মোবাইল এক্সেসরিজ
+
+                <br>
+
+                <span class="text-amber-400">
+                    পাইকারি ও খুচরা মূল্যে!
+                </span>
+
+            </h1>
+
+
+            <p class="text-indigo-200 text-sm md:text-base max-w-xl">
+
+                পছন্দের যেকোনো পণ্য অর্ডার করতে নিচের ফর্ম পূরণ করুন
+                অথবা সরাসরি হোয়াটসঅ্যাপে মেসেজ পাঠান।
+
+            </p>
+
+
+            <div
+                class="flex flex-wrap items-center justify-center
+                       md:justify-start gap-3 pt-1">
+
+                <a
+                    href="https://wa.me/8801861564433"
+                    target="_blank"
+                    class="inline-flex items-center gap-2 bg-green-600
+                           hover:bg-green-700 text-white font-bold px-6 py-3
+                           rounded-xl shadow-lg hover:shadow-green-900/30
+                           transition text-sm">
+
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+
+                    সরাসরি হোয়াটসঅ্যাপ: ০১৮৬১৫৬৪৪৩৩
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hero Images -->
+        <div class="w-full md:w-1/2 lg:w-5/12 grid grid-cols-2 gap-3">
+
+            <img
+                src="https://images.unsplash.com/photo-1541877944-ac82a091518a?w=500&auto=format&fit=crop&q=80"
+                alt="Mobile Cover"
+                class="rounded-2xl shadow-xl border-2 border-white/10
+                       object-cover h-36 w-full">
+
+            <img
+                src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=80"
+                alt="Charger"
+                class="rounded-2xl shadow-xl border-2 border-white/10
+                       object-cover h-36 w-full">
+
+            <img
+                src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=500&auto=format&fit=crop&q=80"
+                alt="Neckband"
+                class="rounded-2xl shadow-xl border-2 border-white/10
+                       object-cover h-36 w-full">
+
+            <img
+                src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=80"
+                alt="Speaker"
+                class="rounded-2xl shadow-xl border-2 border-white/10
+                       object-cover h-36 w-full">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+<main
+    id="products-section"
+    class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full">
+
+
+    <!-- Title -->
+    <div
+        class="flex flex-col sm:flex-row sm:items-center
+               justify-between gap-2 mb-6 pb-3 border-b border-gray-200">
+
+        <div>
+
+            <h2
+                id="categoryTitle"
+                class="text-2xl font-bold text-gray-900
+                       flex items-center gap-2">
+
+                <span
+                    class="w-2.5 h-7 bg-indigo-600 rounded-full
+                           inline-block"></span>
+
+                সকল পণ্যসমূহ
+
+            </h2>
+
+
+            <p class="text-xs text-gray-500 mt-1">
+
+                পছন্দের পণ্যের "অর্ডার করুন" বাটনে ক্লিক করে
+                সহজে ফরম পূরণ করুন
+
+            </p>
+
+        </div>
+
+
+        <span
+            id="productCount"
+            class="text-xs font-semibold bg-indigo-50 text-indigo-700
+                   px-3 py-1.5 rounded-full border border-indigo-100
+                   self-start sm:self-auto">
+
+            দেখাচ্ছে: 0 টি পণ্য
+
+        </span>
+
+    </div>
+
+
+    <!-- Product Grid -->
+    <div
+        id="productGrid"
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3
+               lg:grid-cols-4 gap-3 md:gap-6">
+
+    </div>
+
+
+    <!-- ================= ORDER FORM ================= -->
+    <section
+        id="orderFormSection"
+        class="mt-16 bg-white border-2 border-indigo-100
+               rounded-3xl p-6 sm:p-10 shadow-xl max-w-3xl
+               mx-auto relative overflow-hidden">
+
+        <div
+            class="absolute top-0 right-0 w-32 h-32 bg-indigo-50
+                   rounded-bl-full -z-0">
+        </div>
+
+
+        <div class="relative z-10 space-y-6">
+
+            <div class="text-center space-y-2">
+
+                <span
+                    class="bg-indigo-100 text-indigo-900 text-xs
+                           font-extrabold px-3 py-1 rounded-full
+                           uppercase tracking-wider">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                    সহজ অর্ডার প্রসেস
+
+                </span>
+
+
+                <h3
+                    class="text-2xl sm:text-3xl font-black text-slate-900">
+
+                    অর্ডার করার ফরম
+
+                </h3>
+
+
+                <p class="text-xs sm:text-sm text-gray-600">
+
+                    নিচের তথ্যগুলো পূরণ করে
+                    "অর্ডার কনফার্ম করুন" বাটনে ক্লিক করুন।
+
+                </p>
+
+            </div>
+
+
+            <form
+                id="directOrderForm"
+                onsubmit="handleFormSubmit(event)"
+                class="space-y-4 pt-2">
+
+
+                <!-- Name -->
+                <div>
+
+                    <label
+                        class="block text-xs font-bold text-gray-800 mb-1.5">
+
+                        নাম :
+
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            class="fa-solid fa-user absolute left-3.5 top-3.5
+                                   text-gray-400 text-sm">
+                        </i>
+
+
+                        <input
+                            type="text"
+                            id="custName"
+                            required
+                            placeholder="আপনার সম্পূর্ণ নাম লিখুন"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm
+                                   border border-gray-300 rounded-xl
+                                   focus:ring-2 focus:ring-indigo-500
+                                   focus:border-indigo-500 outline-none
+                                   transition bg-gray-50 focus:bg-white">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Product Name -->
+                <div>
+
+                    <label
+                        class="block text-xs font-bold text-gray-800 mb-1.5">
+
+                        পন্যের নাম :
+
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            class="fa-solid fa-box-open absolute left-3.5
+                                   top-3.5 text-gray-400 text-sm">
+                        </i>
+
+
+                        <input
+                            type="text"
+                            id="custProductName"
+                            required
+                            placeholder="আপনি যে পণ্যটি কিনতে চান তার নাম লিখুন"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm
+                                   border border-gray-300 rounded-xl
+                                   focus:ring-2 focus:ring-indigo-500
+                                   focus:border-indigo-500 outline-none
+                                   transition bg-gray-50 focus:bg-white">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phone -->
+                <div>
+
+                    <label
+                        class="block text-xs font-bold text-gray-800 mb-1.5">
+
+                        মুমাইল নাম্বার :
+
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            class="fa-solid fa-phone absolute left-3.5 top-3.5
+                                   text-gray-400 text-sm">
+                        </i>
+
+
+                        <input
+                            type="tel"
+                            id="custPhone"
+                            required
+                            placeholder="আপনার ১১ ডিজিটের মোবাইল নম্বর"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm
+                                   border border-gray-300 rounded-xl
+                                   focus:ring-2 focus:ring-indigo-500
+                                   focus:border-indigo-500 outline-none
+                                   transition bg-gray-50 focus:bg-white">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Address -->
+                <div>
+
+                    <label
+                        class="block text-xs font-bold text-gray-800 mb-1.5">
+
+                        ঠিকানা :
+
+                    </label>
+
+
+                    <div class="relative">
+
+                        <i
+                            class="fa-solid fa-location-dot absolute left-3.5
+                                   top-3.5 text-gray-400 text-sm">
+                        </i>
+
+
+                        <textarea
+                            id="custAddress"
+                            required
+                            rows="3"
+                            placeholder="গ্রাম/রাস্তা, থানা, জেলা সহ সম্পূর্ণ ঠিকানা লিখুন"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm
+                                   border border-gray-300 rounded-xl
+                                   focus:ring-2 focus:ring-indigo-500
+                                   focus:border-indigo-500 outline-none
+                                   transition bg-gray-50 focus:bg-white">
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="w-full bg-green-600 hover:bg-green-700
+                           text-white font-bold py-3.5 rounded-xl
+                           shadow-lg hover:shadow-green-900/20 transition
+                           flex items-center justify-center gap-2
+                           text-sm sm:text-base">
+
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+
+                    হোয়াটসঅ্যাপে অর্ডার কনফার্ম করুন
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Toast -->
+<div
+    id="toast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50
+           bg-gray-900 text-white text-xs sm:text-sm px-5 py-2.5
+           rounded-full shadow-2xl opacity-0 pointer-events-none
+           transition-all duration-300 flex items-center gap-2
+           border border-gray-700">
+
+    <i class="fa-solid fa-circle-check text-green-400 text-base"></i>
+
+    <span id="toastMsg">
+        পণ্য সিলেক্ট করা হয়েছে!
+    </span>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<footer
+    class="bg-indigo-950 text-gray-300 text-xs sm:text-sm mt-16
+           border-t border-indigo-900">
+
+    <div
+        class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1
+               md:grid-cols-3 gap-8">
+
+
+        <!-- About -->
+        <div class="space-y-3">
+
+            <div class="flex items-center gap-2">
+
+                <div class="bg-indigo-600 text-white p-2 rounded-lg">
+
+                    <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+
+                </div>
+
+                <span class="text-lg font-bold text-white">
+
+                    আব্দুল্লাহ টেলিকম
+
+                </span>
+
+            </div>
+
+
+            <p
+                class="text-indigo-200 text-xs leading-relaxed">
+
+                আমরা দিচ্ছি অরিজিনাল মোবাইল এক্সেসরিজ ও দ্রুত
+                কাস্টমার সার্ভিস। কোনো প্রশ্ন বা বিশেষ অর্ডারের জন্য
+                আমাদের হোয়াটসঅ্যাপে মেসেজ পাঠাতে পারেন।
+
+            </p>
+
+        </div>
+
+
+        <!-- Contact -->
+        <div class="space-y-2">
+
+            <h4
+                class="text-sm font-bold text-white mb-3 text-amber-400">
+
+                যোগাযোগ ও হোয়াটসঅ্যাপ
+
+            </h4>
+
+
+            <p class="flex items-center gap-2 text-xs">
+
+                <i class="fa-brands fa-whatsapp text-green-400 text-sm"></i>
+
+                ০১৮৬১৫৬৪৪৩৩
+
+            </p>
+
+
+            <p class="flex items-center gap-2 text-xs">
+
+                <i class="fa-solid fa-phone text-indigo-400"></i>
+
+                ০১৮৬১৫৬৪৪৩৩
+
+            </p>
+
+
+            <p class="flex items-center gap-2 text-xs">
+
+                <i class="fa-solid fa-location-dot text-amber-500"></i>
+
+                বাংলাদেশ
+
+            </p>
+
+        </div>
+
+
+        <!-- Categories -->
+        <div class="space-y-2">
+
+            <h4
+                class="text-sm font-bold text-white mb-3 text-amber-400">
+
+                পণ্য ক্যাটাগরিসমূহ
+
+            </h4>
+
+
+            <p
+                class="text-xs text-indigo-200 leading-relaxed">
+
+                মোবাইলের কভার, চার্জার, ডাটা ক্যাবল, হেডফোন,
+                আইফোন কভার, নেকব্যান্ড, এক্সেল চার্জার, ব্লুটুথ,
+                অ্যাপল প্রোডাক্টস, ব্যাটারি, টেম্পার্ড গ্লাস,
+                স্টিকার, পলি পেপার, স্পিকার।
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="text-center py-4 bg-indigo-900/50 text-indigo-300
+               border-t border-indigo-900 text-xs">
+
+        &copy; 2026 আব্দুল্লাহ টেলিকম
+        (Abdullah Telecom) | সর্বস্বত্ব সংরক্ষিত।
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+    /* WhatsApp Number */
+    const sellerWhatsAppNumber = "8801861564433";
+
+
+    /* ================= PRODUCT DATABASE ================= */
+
+    const products = [
+
+        /* মোবাইলের কভার */
+
+        {
+            id: 1,
+            name: "প্রিমিয়াম সিলিকন সফট ব্যাক কভার",
+            category: "মোবাইলের কভার",
+            image: "https://images.unsplash.com/photo-1541877944-ac82a091518a?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 2,
+            name: "শকপ্রুফ ট্রান্সপারেন্ট আর্মার কভার",
+            category: "মোবাইলের কভার",
+            image: "https://images.unsplash.com/photo-1601593378480-f03495d637f7?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* চার্জার */
+
+        {
+            id: 3,
+            name: "২০W টাইপ-সি ফাস্ট চার্জিং এডাপ্টার",
+            category: "চার্জার",
+            image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 4,
+            name: "৬৫W সুপার ডার্ট ও গ্যান ফাস্ট চার্জার",
+            category: "চার্জার",
+            image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* ডাটা ক্যাবল */
+
+        {
+            id: 5,
+            name: "নাইলোন ব্রেইডেড টাইপ-সি ফাস্ট চার্জিং ডাটা ক্যাবল",
+            category: "ডাটা ক্যাবল",
+            image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 6,
+            name: "৩-ইন-১ মাল্টিপল ডাটা চার্জিং ক্যাবল",
+            category: "ডাটা ক্যাবল",
+            image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* হেডফোন */
+
+        {
+            id: 7,
+            name: "ইন-ইয়ার ৩.৫ মিমি ক্লাসিক বাস হেডফোন",
+            category: "হেডফোন",
+            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 8,
+            name: "ওভার-ইয়ার প্রফেশনাল বাস হেডফোন",
+            category: "হেডফোন",
+            image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* আইফোন কভার */
+
+        {
+            id: 9,
+            name: "আইফোন প্রিমিয়াম ম্যাগসেফ কভার",
+            category: "আইফোন কভার",
+            image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 10,
+            name: "আইফোন ল্যাদার ফিনিশ প্রোটেক্টিভ কেস",
+            category: "আইফোন কভার",
+            image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* নেকব্যান্ড */
+
+        {
+            id: 11,
+            name: "স্পোর্টস ওয়ারলেস ম্যাগনেটিক নেকব্যান্ড",
+            category: "নেকব্যান্ড",
+            image: "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* এক্সেল চার্জার */
+
+        {
+            id: 12,
+            name: "Axcell অরিজিনাল ফাস্ট চার্জার উইথ ক্যাবল",
+            category: "এক্সেল চার্জার",
+            image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* ব্লুটুথ */
+
+        {
+            id: 13,
+            name: "TWS প্রিমিয়াম ব্লুটুথ ইয়ারবাডস",
+            category: "ব্লুটুথ",
+            image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Apple Products */
+
+        {
+            id: 14,
+            name: "অ্যাপল এয়ারপডস উইথ ম্যাগসেফ কেস",
+            category: "অ্যাপল প্রোডাক্টস",
+            image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=500&auto=format&fit=crop&q=80"
+        },
+
+        {
+            id: 15,
+            name: "অ্যাপল ওয়াচ প্রিমিয়াম স্ট্র্যাপ",
+            category: "অ্যাপল প্রোডাক্টস",
+            image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Battery */
+
+        {
+            id: 16,
+            name: "অরিজিনাল হাই-ক্যাপাসিটি লিথিয়াম ব্যাটারি",
+            category: "ব্যাটারি",
+            image: "https://images.unsplash.com/photo-1619725002198-6a689b72f41d?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Tempered Glass */
+
+        {
+            id: 17,
+            name: "৯H সুপার ক্লিয়ার টেম্পার্ড গ্লাস",
+            category: "টেম্পার্ড গ্লাস",
+            image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Sticker */
+
+        {
+            id: 18,
+            name: "3D টেক্সচার ব্যাক স্কিন স্টিকার",
+            category: "স্টিকার",
+            image: "https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Poly Paper */
+
+        {
+            id: 19,
+            name: "হাইড্রোজেল ফুল কভারেজ পলি পেপার",
+            category: "পলি পেপার",
+            image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500&auto=format&fit=crop&q=80"
+        },
+
+
+        /* Speaker */
+
+        {
+            id: 20,
+            name: "পোর্টেবল মিনি ব্লুটুথ বাস স্পিকার",
+            category: "স্পিকার",
+            image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=80"
+        }
+
+    ];
+
+
+    /* Current Category */
+
+    let currentCategory = 'all';
+
+
+    /* ================= RENDER PRODUCTS ================= */
+
+    function renderProducts(items) {
+
+        const grid = document.getElementById('productGrid');
+
+        const countText = document.getElementById('productCount');
+
+        grid.innerHTML = '';
+
+        countText.innerText =
+            `দেখাচ্ছে: ${items.length} টি পণ্য`;
+
+
+        if (items.length === 0) {
+
+            grid.innerHTML = `
+                <div class="col-span-full text-center py-16
+                            text-gray-500 font-semibold">
+
+                    কোনো পণ্য পাওয়া যায়নি!
+                    অন্য নাম বা ক্যাটাগরি ট্রাই করুন।
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        items.forEach(product => {
+
+            const card = document.createElement('div');
+
+            card.className =
+                "product-card bg-white rounded-2xl shadow-sm " +
+                "hover:shadow-xl border border-gray-100 flex flex-col " +
+                "justify-between overflow-hidden";
+
+
+            card.innerHTML = `
+
+                <div>
+
+                    <div class="relative overflow-hidden bg-gray-100 group">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            class="w-full h-44 sm:h-48 object-cover
+                                   group-hover:scale-105 transition duration-300">
+
+
+                        <span
+                            class="absolute top-2.5 left-2.5
+                                   bg-indigo-950/90 backdrop-blur-md
+                                   text-amber-400 text-[10px] sm:text-xs
+                                   font-bold px-2.5 py-0.5 rounded-full
+                                   uppercase tracking-wider">
+
+                            ${product.category}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="p-3.5">
+
+                        <h3
+                            class="font-bold text-gray-900 text-xs sm:text-sm
+                                   leading-snug line-clamp-2
+                                   min-h-[2.5rem]">
+
+                            ${product.name}
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="p-3.5 pt-0 flex flex-col gap-2">
+
+
+                    <button
+                        onclick="selectProductForForm('${product.name}')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700
+                               text-white text-xs font-bold py-2
+                               rounded-xl flex items-center justify-center
+                               gap-1.5 transition shadow-sm">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        অর্ডার করুন
+
+                    </button>
+
+
+                    <button
+                        onclick="directWhatsAppInquiry('${product.name}', '${product.category}')"
+                        class="w-full bg-green-600 hover:bg-green-700
+                               text-white text-xs font-bold py-2
+                               rounded-xl flex items-center justify-center
+                               gap-1.5 transition shadow-sm">
+
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+
+                        ইনকোয়ারি করুন
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+
+    /* ================= CATEGORY ================= */
+
+    function selectCategory(category, btnElement) {
+
+        currentCategory = category;
+
+
+        const buttons =
+            document.querySelectorAll('.cat-btn');
+
+
+        buttons.forEach(btn => {
+
+            btn.classList.remove(
+                'bg-amber-500',
+                'text-slate-900',
+                'font-bold',
+                'shadow'
+            );
+
+            btn.classList.add('hover:bg-indigo-800');
+
+        });
+
+
+        if (btnElement) {
+
+            btnElement.classList.add(
+                'bg-amber-500',
+                'text-slate-900',
+                'font-bold',
+                'shadow'
+            );
+
+            btnElement.classList.remove(
+                'hover:bg-indigo-800'
+            );
+
+        }
+
+
+        const title =
+            document.getElementById('categoryTitle');
+
+
+        title.innerHTML = `
+            <span
+                class="w-2.5 h-7 bg-indigo-600 rounded-full
+                       inline-block">
+            </span>
+
+            ${category === 'all'
+                ? 'সকল পণ্যসমূহ'
+                : category}
+        `;
+
+
+        filterProducts();
+
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    function filterProducts() {
+
+        const query =
+            document.getElementById('searchInput')
+                .value
+                .toLowerCase()
+                .trim();
+
+
+        let filtered = products;
+
+
+        if (currentCategory !== 'all') {
+
+            filtered =
+                filtered.filter(
+                    p => p.category === currentCategory
+                );
+
+        }
+
+
+        if (query !== '') {
+
+            filtered =
+                filtered.filter(
+                    p =>
+                        p.name.toLowerCase().includes(query) ||
+                        p.category.toLowerCase().includes(query)
+                );
+
+        }
+
+
+        renderProducts(filtered);
+
+    }
+
+
+    /* Mobile Search */
+
+    function filterProductsMobile() {
+
+        document.getElementById('searchInput').value =
+            document.getElementById('mobileSearchInput').value;
+
+        filterProducts();
+
+    }
+
+
+    /* ================= SELECT PRODUCT ================= */
+
+    function selectProductForForm(productName) {
+
+        const productField =
+            document.getElementById('custProductName');
+
+
+        productField.value = productName;
+
+
+        showToast(
+            `"${productName}" ফর্মে সিলেক্ট করা হয়েছে!`
+        );
+
+
+        const orderSection =
+            document.getElementById('orderFormSection');
+
+
+        orderSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+
+    }
+
+
+    /* ================= WHATSAPP INQUIRY ================= */
+
+    function directWhatsAppInquiry(productName, category) {
+
+        const message =
+            `হ্যালো *আব্দুল্লাহ টেলিকম*, ` +
+            `আমি নিম্নোক্ত পণ্যটি সম্পর্কে বিস্তারিত জানতে চাই:%0A%0A` +
+            `• *পণ্য:* ${productName}%0A` +
+            `• *ক্যাটাগরি:* ${category}`;
+
+
+        window.open(
+            `https://wa.me/${sellerWhatsAppNumber}?text=${message}`,
+            '_blank'
+        );
+
+    }
+
+
+    /* ================= ORDER FORM ================= */
+
+    function handleFormSubmit(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById('custName')
+                .value
+                .trim();
+
+
+        const productName =
+            document.getElementById('custProductName')
+                .value
+                .trim();
+
+
+        const phone =
+            document.getElementById('custPhone')
+                .value
+                .trim();
+
+
+        const address =
+            document.getElementById('custAddress')
+                .value
+                .trim();
+
+
+        if (
+            !name ||
+            !productName ||
+            !phone ||
+            !address
+        ) {
+
+            alert(
+                'দয়া করে সকল তথ্য প্রদান করুন।'
+            );
+
+            return;
+        }
+
+
+        let text =
+            `*নতুন অর্ডার (আব্দুল্লাহ টেলিকম)*%0A%0A`;
+
+
+        text +=
+            `*নাম :* ${name}%0A`;
+
+
+        text +=
+            `*পন্যের নাম :* ${productName}%0A`;
+
+
+        text +=
+            `*মুমাইল নাম্বার :* ${phone}%0A`;
+
+
+        text +=
+            `*ঠিকানা :* ${address}%0A%0A`;
+
+
+        text +=
+            `দয়া করে অর্ডারটি নিশ্চিত করুন।`;
+
+
+        showToast(
+            "হোয়াটসঅ্যাপে অর্ডার প্রস্তুত করা হচ্ছে..."
+        );
+
+
+        window.open(
+            `https://wa.me/${sellerWhatsAppNumber}?text=${text}`,
+            '_blank'
+        );
+
+    }
+
+
+    /* ================= TOAST ================= */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById('toast');
+
+
+        const toastMsg =
+            document.getElementById('toastMsg');
+
+
+        toastMsg.innerText = message;
+
+
+        toast.classList.remove(
+            'opacity-0',
+            'pointer-events-none'
+        );
+
+
+        toast.classList.add(
+            'opacity-100'
+        );
+
+
+        setTimeout(() => {
+
+            toast.classList.remove(
+                'opacity-100'
+            );
+
+
+            toast.classList.add(
+                'opacity-0',
+                'pointer-events-none'
+            );
+
+        }, 2500);
+
+    }
+
+
+    /* ================= INITIAL LOAD ================= */
+
+    window.onload = function() {
+
+        renderProducts(products);
+
+    };
+
+</script>
+
+</body>
+</html>
